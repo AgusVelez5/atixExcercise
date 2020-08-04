@@ -1,7 +1,7 @@
 const winston = require('winston');
 const path = require('path');
 
-pathToLogs = path.resolve('logs');
+pathToLogs = path.resolve();
 
 const logger = winston.createLogger({
     level: 'info',
