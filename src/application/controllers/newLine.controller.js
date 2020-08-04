@@ -2,6 +2,7 @@ const newLineRequest = require('../request/newLine.request');
 const newLineService = require('../../domain/newLine.domain');
 const { ResponseError } = require('../../utils/response.model');
 
+
 exports.post = async (req, res) => {
     const requestData =  Object.assign({}, {
         message: req.body.message,

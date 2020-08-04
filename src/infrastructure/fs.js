@@ -4,17 +4,19 @@ const lineReader = require('line-reader');
 const readLastLines = require('read-last-lines');
 const { ResponseError } = require('../utils/response.model');
 const path = require('path');
+const { logger } = require('../utils/logger');
 
 module.exports = {
     addLine: async line => {
 
         try { 
 
+            logger.info("Generated line: " + line);
             const pathToFile = path.resolve("outputFiles", FILE);
             return await fs.promises.appendFile(pathToFile, line + "\n");
 
         } catch (err){
-            console.log(err);
+            logger.error("500 Server error: " + err);
             return new ResponseError('500', 'Server error', err);
         }
     },
@@ -22,30 +24,12 @@ module.exports = {
     getLastLine: async () => {
 
         try {
-            
-            /* let lastLine = "";
-
-            const pathToFile = path.resolve("outputFiles", FILE);
-            lineReader.eachLine(pathToFile, (line, last) => {
-                if (last){
-                    console.log('prev line')
-                    console.log(line);
-                    console.log(last);
-                    lastLine = line;
-                }
-            });
-
-            console.log('----')
-            console.log(lastLine);
-            console.log('----')
-            return lastLine; */
 
             const pathToFile = path.resolve("outputFiles", FILE);
             return await readLastLines.read(pathToFile, 1);
-                
 
         } catch (err){
-            console.log(err);
+            logger.error("500 Server error: " + err);
             return new ResponseError('500', 'Server error', err);
         }
     }

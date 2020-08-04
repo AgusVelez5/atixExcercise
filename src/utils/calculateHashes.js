@@ -1,6 +1,7 @@
 const fs = require('../infrastructure/fs');
 const { ResponseError } = require('./response.model');
 const crypto = require("crypto");
+const { logger } = require('./logger');
 
 module.exports = {
     
@@ -39,7 +40,7 @@ module.exports = {
 
             return lastLineHash;
         } catch (err) {
-            console.log(err);
+            logger.error("500 Server error: " + err);
             return new ResponseError('500', 'Server error', err);
         }
     }
