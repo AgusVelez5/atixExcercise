@@ -10,7 +10,7 @@ module.exports = {
     validate: (data) => {
         console.log(data);
 
-        const {error, value} = Joi.validate(data, schemaNewLine);
+        const {error, value} = schemaNewLine.validate(data);
 
         if(!error){
             return new Response(value);
