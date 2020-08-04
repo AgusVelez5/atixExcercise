@@ -1,6 +1,5 @@
 const FILE = process.env.FILE;
 const fs = require('fs');
-const lineReader = require('line-reader');
 const readLastLines = require('read-last-lines');
 const { ResponseError } = require('../utils/response.model');
 const path = require('path');
